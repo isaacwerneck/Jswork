@@ -1,0 +1,33 @@
+// 963R - PROGRAMAÇÃO JAVASCRIPT 2024/1
+// 2024101179 - Isaac Azevedo Werneck
+
+function isPrime(num) {                 // função que verifica se o número é primo ou não
+    if (num <= 1) return false          // se for menor ou igual a 1, não é primo
+    if (num <= 3) return true           // 2 e 3 são primos
+    if (num % 2 === 0 || num % 3 === 0) return false         // elimina múltiplos de 2 e 3
+    for (let i = 5; i * i <= num; i += 6) {                  // testa os possíveis divisores
+        if (num % i === 0 || num % (i + 2) === 0) return false
+    }
+    return true;
+}
+
+function findLargestPrimes() {          // função que exibe os 10 maiores números primos
+    const input = prompt("digite um número:") // pega o valor do usuário
+    let number = parseInt(input)    // transforma ele em inteiro
+    if (isNaN(number)) {            // se não for um número, vai dar erro
+        console.log("digite um número válido")
+        return
+    }
+
+    let primes = [];            // array criada para armazenar os 10 maiores primos
+    while (primes.length < 10) {        // sistema de loop para contar os 10 maiores primos
+        if (isPrime(number)) {
+            primes.push(number)
+        }
+        number++
+    }
+
+    console.log(primes.join(", "))      
+}
+
+findLargestPrimes()
